@@ -1,0 +1,34 @@
+# PostMate Backend - Development & Testing Dependencies
+
+# Include production dependencies
+-r requirements.txt
+
+# Testing
+pytest==7.4.4
+pytest-asyncio==0.23.3
+pytest-cov==4.1.0
+pytest-mock==3.12.0
+httpx==0.26.0  # Already in main requirements, for TestClient
+
+# Mocking & Test Data
+faker==22.0.0
+moto[all]==5.0.0  # Mock AWS services
+
+# Code Quality
+black==24.1.1  # Code formatting
+flake8==7.0.0  # Linting
+mypy==1.8.0  # Type checking
+isort==5.13.2  # Import sorting
+pylint==3.0.3
+
+# Pre-commit hooks (optional)
+pre-commit==3.6.0
+
+# Documentation
+mkdocs==1.5.3
+mkdocs-material==9.5.6
+
+# Development tools
+ipython==8.20.0
+ipdb==0.13.13  # Debugger
+watchdog==3.0.0  # File watching for hot reload

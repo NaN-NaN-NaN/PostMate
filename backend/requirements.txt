@@ -1,0 +1,59 @@
+# PostMate Backend - Production Dependencies
+# Python 3.10+
+
+# Web Framework
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+pydantic==2.5.3
+pydantic-settings==2.1.0
+python-multipart==0.0.6  # For file uploads
+
+# AWS SDK
+boto3==1.34.34
+botocore==1.34.34
+
+# AWS Service Clients
+aioboto3==12.3.0  # Async boto3 for better FastAPI integration
+
+# Database
+# DynamoDB is accessed via boto3, no additional driver needed
+
+# OCR - Local Fallback
+pytesseract==0.3.10
+Pillow==10.2.0  # Image processing
+
+# LLM - OpenAI Fallback
+openai==1.10.0
+
+# PDF Generation
+reportlab==4.0.9
+PyPDF2==3.0.1
+
+# Background Tasks & Scheduling (for local dev)
+apscheduler==3.10.4
+
+# HTTP Client
+httpx==0.26.0  # For async HTTP calls
+aiofiles==23.2.1  # Async file I/O
+
+# Utilities
+python-dotenv==1.0.1  # Environment variable management
+python-jose[cryptography]==3.3.0  # JWT tokens (if adding auth)
+passlib[bcrypt]==1.7.4  # Password hashing (if adding auth)
+
+# Validation & Parsing
+email-validator==2.1.0
+python-dateutil==2.8.2
+
+# Logging & Monitoring
+structlog==24.1.0
+python-json-logger==2.0.7
+
+# Performance
+orjson==3.9.13  # Fast JSON parsing
+
+# UUID
+shortuuid==1.0.11  # Short unique IDs for documents
+
+# Text Processing
+tiktoken==0.5.2  # Token counting for LLM chunking

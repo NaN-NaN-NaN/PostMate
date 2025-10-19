@@ -1,0 +1,35 @@
+Analyze the following document text extracted via OCR and return ONLY a valid JSON object with no additional text, markdown formatting, or explanation.
+
+Document Text:
+{OCR_TEXT}
+
+Your task is to:
+1. Categorize the document type
+2. Extract key information and entities
+3. Provide a brief summary
+4. Suggest relevant tags
+
+Return ONLY this JSON structure (no markdown code blocks, no extra text):
+{
+  "category": "invoice|receipt|letter|contract|form|other",
+  "confidence": 0.95,
+  "summary": "A concise 1-2 sentence summary of the document",
+  "key_entities": {
+    "date": "YYYY-MM-DD or null",
+    "total_amount": "$XX.XX or null",
+    "vendor": "Company/sender name or null",
+    "recipient": "Recipient name or null",
+    "invoice_number": "Invoice/reference number or null",
+    "due_date": "YYYY-MM-DD or null",
+    "payment_terms": "Payment terms or null"
+  },
+  "suggested_tags": ["tag1", "tag2", "tag3"]
+}
+
+Instructions:
+- Set confidence between 0.0 and 1.0 based on how clear the document type is
+- For key_entities, only include fields that are found in the document (use null for missing)
+- Suggested tags should be 3-5 relevant keywords
+- Dates must be in YYYY-MM-DD format
+- Amounts should include currency symbol if present
+- Return ONLY the JSON object, nothing else

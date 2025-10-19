@@ -1,0 +1,202 @@
+{
+  "DocumentMetadata": {
+    "Pages": 1
+  },
+  "Blocks": [
+    {
+      "BlockType": "PAGE",
+      "Geometry": {
+        "BoundingBox": {
+          "Width": 1.0,
+          "Height": 1.0,
+          "Left": 0.0,
+          "Top": 0.0
+        }
+      },
+      "Id": "page-1",
+      "Confidence": 100.0
+    },
+    {
+      "BlockType": "LINE",
+      "Confidence": 99.5,
+      "Text": "INVOICE",
+      "Geometry": {
+        "BoundingBox": {
+          "Width": 0.15,
+          "Height": 0.03,
+          "Left": 0.42,
+          "Top": 0.05
+        }
+      },
+      "Id": "line-1"
+    },
+    {
+      "BlockType": "LINE",
+      "Confidence": 98.8,
+      "Text": "ABC Company Inc.",
+      "Geometry": {
+        "BoundingBox": {
+          "Width": 0.25,
+          "Height": 0.025,
+          "Left": 0.1,
+          "Top": 0.12
+        }
+      },
+      "Id": "line-2"
+    },
+    {
+      "BlockType": "LINE",
+      "Confidence": 99.2,
+      "Text": "123 Business Street",
+      "Geometry": {
+        "BoundingBox": {
+          "Width": 0.22,
+          "Height": 0.02,
+          "Left": 0.1,
+          "Top": 0.15
+        }
+      },
+      "Id": "line-3"
+    },
+    {
+      "BlockType": "LINE",
+      "Confidence": 97.5,
+      "Text": "Invoice #: INV-2024-001",
+      "Geometry": {
+        "BoundingBox": {
+          "Width": 0.28,
+          "Height": 0.025,
+          "Left": 0.1,
+          "Top": 0.25
+        }
+      },
+      "Id": "line-4"
+    },
+    {
+      "BlockType": "LINE",
+      "Confidence": 98.9,
+      "Text": "Date: January 15, 2024",
+      "Geometry": {
+        "BoundingBox": {
+          "Width": 0.25,
+          "Height": 0.025,
+          "Left": 0.1,
+          "Top": 0.28
+        }
+      },
+      "Id": "line-5"
+    },
+    {
+      "BlockType": "LINE",
+      "Confidence": 99.1,
+      "Text": "Due Date: February 15, 2024",
+      "Geometry": {
+        "BoundingBox": {
+          "Width": 0.3,
+          "Height": 0.025,
+          "Left": 0.1,
+          "Top": 0.31
+        }
+      },
+      "Id": "line-6"
+    },
+    {
+      "BlockType": "LINE",
+      "Confidence": 99.0,
+      "Text": "Bill To:",
+      "Geometry": {
+        "BoundingBox": {
+          "Width": 0.12,
+          "Height": 0.025,
+          "Left": 0.1,
+          "Top": 0.38
+        }
+      },
+      "Id": "line-7"
+    },
+    {
+      "BlockType": "LINE",
+      "Confidence": 98.5,
+      "Text": "John Doe",
+      "Geometry": {
+        "BoundingBox": {
+          "Width": 0.15,
+          "Height": 0.02,
+          "Left": 0.1,
+          "Top": 0.41
+        }
+      },
+      "Id": "line-8"
+    },
+    {
+      "BlockType": "LINE",
+      "Confidence": 99.3,
+      "Text": "Description",
+      "Geometry": {
+        "BoundingBox": {
+          "Width": 0.15,
+          "Height": 0.025,
+          "Left": 0.1,
+          "Top": 0.5
+        }
+      },
+      "Id": "line-9"
+    },
+    {
+      "BlockType": "LINE",
+      "Confidence": 97.8,
+      "Text": "Consulting Services",
+      "Geometry": {
+        "BoundingBox": {
+          "Width": 0.22,
+          "Height": 0.02,
+          "Left": 0.1,
+          "Top": 0.55
+        }
+      },
+      "Id": "line-10"
+    },
+    {
+      "BlockType": "LINE",
+      "Confidence": 99.6,
+      "Text": "Subtotal: $1,200.00",
+      "Geometry": {
+        "BoundingBox": {
+          "Width": 0.25,
+          "Height": 0.025,
+          "Left": 0.55,
+          "Top": 0.75
+        }
+      },
+      "Id": "line-11"
+    },
+    {
+      "BlockType": "LINE",
+      "Confidence": 98.7,
+      "Text": "Tax (5%): $60.00",
+      "Geometry": {
+        "BoundingBox": {
+          "Width": 0.22,
+          "Height": 0.025,
+          "Left": 0.55,
+          "Top": 0.78
+        }
+      },
+      "Id": "line-12"
+    },
+    {
+      "BlockType": "LINE",
+      "Confidence": 99.8,
+      "Text": "Total: $1,260.00",
+      "Geometry": {
+        "BoundingBox": {
+          "Width": 0.24,
+          "Height": 0.03,
+          "Left": 0.55,
+          "Top": 0.82
+        }
+      },
+      "Id": "line-13"
+    }
+  ]
+}

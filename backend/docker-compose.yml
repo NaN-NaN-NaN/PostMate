@@ -1,0 +1,113 @@
+# PostMate Backend - Local Development with Docker Compose
+# Purpose: Run complete local stack (FastAPI + DynamoDB Local)
+# Usage: docker-compose up --build
+# Access API: http://localhost:8080/docs
+
+version: '3.8'
+
+services:
+  # DynamoDB Local for development
+  dynamodb-local:
+    image: amazon/dynamodb-local:latest
+    container_name: postmate-dynamodb
+    ports:
+      - "8000:8000"
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
+    volumes:
+      - dynamodb-data:/home/dynamodblocal/data
+    networks:
+      - postmate-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8000 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # FastAPI Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: postmate-api
+    ports:
+      - "8080:8080"
+    environment:
+      # App Config
+      - ENVIRONMENT=local
+      - DEBUG=true
+      - API_V1_PREFIX=/api/v1
+
+      # Storage (local file system)
+      - USE_LOCAL_STORAGE=true
+      - LOCAL_STORAGE_PATH=/app/local_data
+
+      # OCR (Tesseract)
+      - OCR_PROVIDER=tesseract
+      - TESSERACT_PATH=/usr/bin/tesseract
+
+      # LLM (OpenAI - set your key in .env)
+      - LLM_PROVIDER=${LLM_PROVIDER:-openai}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_MODEL=${OPENAI_MODEL:-gpt-4-turbo-preview}
+
+      # Database (DynamoDB Local)
+      - USE_DYNAMODB_LOCAL=true
+      - DYNAMODB_LOCAL_ENDPOINT=http://dynamodb-local:8000
+      - DYNAMODB_TABLE_DOCUMENTS=postmate-documents-local
+      - DYNAMODB_TABLE_ANALYSES=postmate-analyses-local
+      - DYNAMODB_TABLE_CHATS=postmate-chats-local
+      - DYNAMODB_TABLE_REMINDERS=postmate-reminders-local
+
+      # Workers
+      - WORKER_MODE=fastapi
+
+      # Scheduler
+      - SCHEDULER_PROVIDER=apscheduler
+
+      # Logging
+      - LOG_LEVEL=DEBUG
+      - LOG_FORMAT=text
+
+    volumes:
+      - ./app:/app/app  # Mount code for hot reload
+      - ./local_data:/app/local_data  # Persist local storage
+      - ./logs:/app/logs  # Persist logs
+    depends_on:
+      dynamodb-local:
+        condition: service_healthy
+    networks:
+      - postmate-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8080/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    command: >
+      sh -c "
+        python -m app.scripts.create_tables_local &&
+        uvicorn app.main:app --host 0.0.0.0 --port 8080 --reload
+      "
+
+  # DynamoDB Admin UI (optional, for debugging)
+  dynamodb-admin:
+    image: aaronshaf/dynamodb-admin:latest
+    container_name: postmate-dynamodb-admin
+    ports:
+      - "8001:8001"
+    environment:
+      - DYNAMO_ENDPOINT=http://dynamodb-local:8000
+      - AWS_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=local
+      - AWS_SECRET_ACCESS_KEY=local
+    depends_on:
+      - dynamodb-local
+    networks:
+      - postmate-network
+
+networks:
+  postmate-network:
+    driver: bridge
+
+volumes:
+  dynamodb-data:
+    driver: local

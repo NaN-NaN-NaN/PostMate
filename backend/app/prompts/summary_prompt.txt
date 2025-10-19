@@ -1,0 +1,13 @@
+Summarize the following text concisely while preserving all key information, important details, dates, amounts, names, and critical facts.
+
+Text to summarize:
+{TEXT}
+
+Requirements:
+- Keep the summary concise but comprehensive
+- Preserve exact dates, amounts, names, and reference numbers
+- Maintain the logical flow and structure
+- Don't add interpretations or information not in the original text
+- If the text is already concise, you may return it with minimal changes
+
+Summary:
